@@ -72,20 +72,6 @@ public class RadiusPacket {
 		return null;
 	}
 
-	public void dump() {
-		System.out.println("code=" + code + " id=" + id + " length=" + length);
-		System.out.print("authenticator=");
-		for (int i = 0; i < 16; i++) {
-			System.out.print(Integer.toHexString(0xFF & authenticator[i]));
-		}
-		System.out.println();
-		System.out.println("Attributes={");
-		for (AttributeIF attribute : attributes) {
-			System.out.println("    " + attribute.toString());
-		}
-		System.out.println("}");
-	}
-	
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();

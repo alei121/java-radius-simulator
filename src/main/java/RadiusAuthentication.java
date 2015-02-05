@@ -45,7 +45,7 @@ public class RadiusAuthentication {
 		channel.connect(sa);
 		
 		RadiusPacket resp = login(channel, USERNAME, PASSWORD);
-		resp.dump();
+		System.out.println(resp.toString());
 		
 		channel.close();
 	}

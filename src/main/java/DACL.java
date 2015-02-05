@@ -45,7 +45,7 @@ public class DACL {
 		channel.connect(sa);
 		
 		RadiusPacket resp = login(channel, USERNAME, PASSWORD);
-		resp.dump();
+		System.out.println(resp.toString());
 		
 		String aclName = resp.getVSA(CISCO_DACL_VSA);
 		System.out.println();

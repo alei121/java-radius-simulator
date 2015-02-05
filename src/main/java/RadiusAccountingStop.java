@@ -34,6 +34,7 @@ public class RadiusAccountingStop {
 	final static String PASSWORD = System.getProperty("PASSWORD", "Lab123");
 	final static String CALLING_STATION_ID = System.getProperty("CALLING_STATION_ID", "00:11:22:33:44:55");
 	final static String AUDIT_SESSION_ID = System.getProperty("AUDIT_SESSION_ID", "101");
+	final static String ACCT_SESSION_ID = System.getProperty("ACCT_SESSION_ID", "101");
 	final static String RADIUS_SECRET = System.getProperty("RADIUS_SECRET", "secret");
 	final static String NAS_IP_ADDRESS = System.getProperty("NAS_IP_ADDRESS", "10.0.0.1");
 	final static String FRAMED_IP_ADDRESS = System.getProperty("FRAMED_IP_ADDRESS");
@@ -56,7 +57,7 @@ public class RadiusAccountingStop {
 		channel.connect(sa);
 		
 		RadiusPacket resp = stop(channel, USERNAME, PASSWORD);
-		resp.dump();
+		System.out.println(resp.toString());
 		
 		channel.close();
 	}
@@ -71,7 +72,7 @@ public class RadiusAccountingStop {
 		req.add(new AcctDelayTime(1));
 		req.add(new AcctInputOctets(2));
 		req.add(new AcctOutputOctets(3));
-		req.add(new AcctSessionID("123"));
+		req.add(new AcctSessionID(ACCT_SESSION_ID));
 		req.add(new AcctAuthentic(AcctAuthentic.Type.RADIUS));
 		req.add(new AcctSessionTime(4));
 		req.add(new AcctInputPackets(5));
