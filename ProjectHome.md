@@ -1,0 +1,1 @@
+The project is to simulate radius protocol as a network device that talks to a radius server.
