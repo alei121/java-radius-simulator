@@ -31,7 +31,7 @@ public class RadiusAuthentication {
 	final static String NAS_PORT = System.getProperty("NAS_PORT");
 	final static String NAS_PORT_ID = System.getProperty("NAS_PORT_ID");
 	final static String NAS_PORT_TYPE = System.getProperty("NAS_PORT_TYPE");
-	final static String FRAMED_IPv6_ADDRESS = System.getProperty("FRAMED_IPv6_ADDRESS");
+	final static String FRAMED_IPV6_ADDRESS = System.getProperty("FRAMED_IPV6_ADDRESS");
 
 	static byte[] requestAuthenticator = new byte[16];
 
@@ -72,8 +72,8 @@ public class RadiusAuthentication {
 		if (NAS_PORT_TYPE != null) {
 			req.add(new NASPortType(Integer.parseInt(NAS_PORT_TYPE)));
 		}
-		if (FRAMED_IPv6_ADDRESS != null) {
-			req.add(new FramedIPv6Address(InetAddress.getByName(FRAMED_IPv6_ADDRESS).getAddress()));
+		if (FRAMED_IPV6_ADDRESS != null) {
+			req.add(new FramedIPv6Address(InetAddress.getByName(FRAMED_IPV6_ADDRESS).getAddress()));
 		}
 		
 		channel.write(req.getPayload());
