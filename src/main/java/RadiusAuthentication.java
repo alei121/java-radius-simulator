@@ -11,6 +11,7 @@ import code.messy.net.radius.attribute.FramedIPAddress;
 import code.messy.net.radius.attribute.FramedIPNetmask;
 import code.messy.net.radius.attribute.FramedIPv6Address;
 import code.messy.net.radius.attribute.NASIPAddress;
+import code.messy.net.radius.attribute.NASIPv6Address;
 import code.messy.net.radius.attribute.NASPort;
 import code.messy.net.radius.attribute.NASPortID;
 import code.messy.net.radius.attribute.NASPortType;
@@ -32,6 +33,7 @@ public class RadiusAuthentication {
 	final static String NAS_PORT_ID = System.getProperty("NAS_PORT_ID");
 	final static String NAS_PORT_TYPE = System.getProperty("NAS_PORT_TYPE");
 	final static String FRAMED_IPV6_ADDRESS = System.getProperty("FRAMED_IPV6_ADDRESS");
+	final static String NAS_IPV6_ADDRESS = System.getProperty("NAS_IPV6_ADDRESS");
 
 	static byte[] requestAuthenticator = new byte[16];
 
@@ -73,7 +75,13 @@ public class RadiusAuthentication {
 			req.add(new NASPortType(Integer.parseInt(NAS_PORT_TYPE)));
 		}
 		if (FRAMED_IPV6_ADDRESS != null) {
-			req.add(new FramedIPv6Address(InetAddress.getByName(FRAMED_IPV6_ADDRESS).getAddress()));
+			String[] addresses = FRAMED_IPV6_ADDRESS.split(",");
+			for (String address : addresses) {
+				req.add(new FramedIPv6Address(InetAddress.getByName(address).getAddress()));
+			}
+		}
+		if (NAS_IPV6_ADDRESS != null) {
+			req.add(new NASIPv6Address(InetAddress.getByName(NAS_IPV6_ADDRESS).getAddress()));
 		}
 		
 		channel.write(req.getPayload());

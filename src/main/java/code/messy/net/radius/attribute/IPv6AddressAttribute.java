@@ -8,6 +8,7 @@ public class IPv6AddressAttribute implements AttributeIF {
 	byte[] address;
 	
 	public IPv6AddressAttribute(int type, byte[] address) {
+		if (address.length != 16) throw new IllegalArgumentException("IPv6 length=" + address.length);
 		this.type = type;
 		this.address = address;
 	}
