@@ -27,7 +27,7 @@ public class RadiusAuthentication {
 	final static String AUDIT_SESSION_ID = System.getProperty("AUDIT_SESSION_ID", "101");
 	final static String RADIUS_SECRET = System.getProperty("RADIUS_SECRET", "secret");
 	final static String NAS_IP_ADDRESS = System.getProperty("NAS_IP_ADDRESS", "10.0.0.1");
-	final static String FRAMED_IP_ADDRESS = System.getProperty("FRAMED_IP_ADDRESS", "1.2.3.4");
+	final static String FRAMED_IP_ADDRESS = System.getProperty("FRAMED_IP_ADDRESS");
 	final static String FRAMED_IP_MASK = System.getProperty("FRAMED_IP_MASK", "255.255.255.0");
 	final static String NAS_PORT = System.getProperty("NAS_PORT");
 	final static String NAS_PORT_ID = System.getProperty("NAS_PORT_ID");
