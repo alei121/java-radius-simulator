@@ -29,7 +29,10 @@ public class AccessRequest {
 	}
 
 	public ByteBuffer getPayload() {
-		id++;
+		return getPayload(id++);
+	}
+	
+	public ByteBuffer getPayload(byte id) {
 		int messageAuthenticatorPos = 0;
 		
 		ByteBuffer bb = ByteBuffer.allocate(10 * 1024);
