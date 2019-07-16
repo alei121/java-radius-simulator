@@ -24,11 +24,13 @@ import code.messy.net.radius.attribute.UserPassword;
 import code.messy.net.radius.packet.AccessRequest;
 
 public class RadiusAuthenticationLoop {
+	final static String RADIUS_PORT = System.getProperty("RADIUS_PORT", "1812");
+	final static String RADIUS_SECRET = System.getProperty("RADIUS_SECRET", "secret");
+
 	final static String USERNAME = System.getProperty("USERNAME", "user1");
 	final static String PASSWORD = System.getProperty("PASSWORD", "Lab123");
 	final static String CALLING_STATION_ID = System.getProperty("CALLING_STATION_ID", "00:11:22:33:44:55");
 	final static String AUDIT_SESSION_ID = System.getProperty("AUDIT_SESSION_ID", "101");
-	final static String RADIUS_SECRET = System.getProperty("RADIUS_SECRET", "secret");
 	final static String NAS_IP_ADDRESS = System.getProperty("NAS_IP_ADDRESS", "10.0.0.1");
 	final static String FRAMED_IP_ADDRESS = System.getProperty("FRAMED_IP_ADDRESS");
 	final static String FRAMED_IP_MASK = System.getProperty("FRAMED_IP_MASK", "255.255.255.0");
@@ -92,7 +94,7 @@ public class RadiusAuthenticationLoop {
 		public void run() {
 			try {
 				InetAddress address = InetAddress.getByName(ip);
-				int port = 1812;
+				int port = Integer.parseInt(RADIUS_PORT);
 				InetSocketAddress sa = new InetSocketAddress(address, port);
 				DatagramChannel channel = DatagramChannel.open();
 				channel.connect(sa);
